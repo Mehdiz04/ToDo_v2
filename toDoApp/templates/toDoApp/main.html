@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>Todo App</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <h5 style="display: block;"> {{message}} </h5>
+        {% endfor %}
+    {% endif %}
+    <div class="todo-container">
+        <a href="{% url 'logout' %}" class='logout-button'>Logout</a>
+        <a href="{% url 'add_task' %}" class='AddTask-button'>Add Task</a>
+        <h1>Todo App</h1>
+        <div class="search-task">
+            <input type="text" id="task" placeholder="search a task">
+            <button id="search-button">Search</button>
+        </div>
+        {% if tasks %}
+        <ul id="task-list">
+                {% for task in tasks %}
+                    {% if task.completed %}
+                    <a href="{% url 'task' task.id %}"><li> {{task.title}} <span style="color: brown;">Completed</span> </li></a>
+                    {% else %}
+                    <a href="{% url 'task' task.id %}"><li> {{task.title}} </li></a>
+                    {% endif %}
+                {% endfor %}
+        </ul>
+        {% else %}
+        <h4>No Tasks</h4>
+        {% endif %}
+    </div>
+</body>
+</html>

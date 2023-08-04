@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>Task Detail</title>
+</head>
+<body>
+    <div class="task-detail-container">
+        <h1>Task Detail</h1>
+        <div class="task">
+            <h2>{{ task.title }}</h2>
+            {% if task.description %}
+            <p>{{ task.description }}</p>
+            {% else %}
+            <p>No description</p>
+            {% endif %}
+        </div>
+        <div class="buttons">
+            <a href="{% url 'update_task' task.id %} " class="update-button">Update</a>
+            <a href="{% url 'delete_task' task.id %}" class="delete-button">Delete</a>
+        </div>
+    </div>
+</body>
+</html>

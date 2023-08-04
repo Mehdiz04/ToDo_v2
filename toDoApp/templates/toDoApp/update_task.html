@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>update_task</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Update-Task</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="login-button">Update</button>
+        </form>
+        <h5><a href="{% url 'main' %}" >Go back</a></h5>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <h5 style="display: block;"> {{message}} </h5>
+        {% endfor %}
+    {% endif %}
+    <div class="login-container">
+        <h1>Login</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="login-button">Login</button>
+        </form>
+        <h5>Don't Have An Account? <a href="{% url 'register' %}" >Register</a></h5>
+    </div>
+</body>
+</html>
