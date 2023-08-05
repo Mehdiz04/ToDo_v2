@@ -69,13 +69,10 @@ class UpdateTask(LoginRequiredMixin, UpdateView):
 
 
 def deleteTask(request , pk):
-    task = Task.objects.get(id=pk)
-    if request.user != task.author:
-        messages.warning(request, 'invalid request!!')
-        return redirect('main')
-    else:
-        task.delete()
-        return redirect('main')
+    user_tasks = Task.objects.filter(author=request.user)
+    task = user_tasks.get(id=pk)
+    task.delete()
+    return redirect('main')
 
 
 class DetailTask(LoginRequiredMixin , DetailView):
